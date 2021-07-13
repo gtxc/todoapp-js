@@ -1,5 +1,14 @@
 let ctr = 0;
 
+let textField = document.getElementById("todoTextField");
+
+textField.addEventListener("keyup", function(event) {
+    event.preventDefault();
+    if (event.keyCode === 13) {
+        document.getElementById("todoSubmitButton").click();
+    }
+});
+
 function createToDo() {
     let todo = document.getElementById("todoTextField").value;
     document.getElementById("todoTextField").focus();
@@ -31,7 +40,10 @@ function createToDo() {
     document.getElementById("todoTextField").value = "";
     
     ctr++;
+
+    
 };
+
 
 function editTodoF(editId) {
     let editTodoItem = document.getElementById(editId).firstChild.nodeValue;
@@ -96,4 +108,5 @@ function updateTodoF(editId, editAreaId, paragraphId) {
     };
     
     ctr++;
+
 };
