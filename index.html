@@ -4,15 +4,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="app.css" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <title>ToDo List</title>
 </head>
 <body>
-    <div id="main" style="text-align: center;">
-        <h1>ToDo List</h1>
+    <div id="container" class="container">
+        <h1>TODO LIST</h1>
         <br>
-        <input id="todoTextField" type="text" placeholder="Write something to do" autofocus>
-        <input id="todoSubmitButton" type="button" value="Add" onclick="createToDo()">
+        <h3>ADD TASK</h3>
+        <hr>
+        <input id="todoTextField" class="textField" type="text" placeholder="Write something to do" autofocus>
+        <input id="todoSubmitButton" class="submitBtn" type="button" value="ADD" onclick="createToDo()">
+        <br><br>
+        <h3>TASKS IN PROGRESS</h3>
+        <hr>
+        <h3>TASKS DONE</h3>
+        <hr>
     </div>
 </body>
-<script src="main.js"></script>
+<script src="app.js"></script>
 </html>

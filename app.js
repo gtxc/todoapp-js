@@ -1,17 +1,20 @@
 let ctr = 0;
 
-let textField = document.getElementById("todoTextField");
+const containerDiv = document.getElementById("container");
+const textField = document.getElementById("todoTextField");
+const submitButton = document.getElementById("todoSubmitButton");
 
 textField.addEventListener("keyup", function(event) {
     event.preventDefault();
-    if (event.keyCode === 13) {
+    if (event.key === 'Enter') {
         document.getElementById("todoSubmitButton").click();
     }
 });
 
 function createToDo() {
-    let todo = document.getElementById("todoTextField").value;
-    document.getElementById("todoTextField").focus();
+
+    let todo = textField.value;
+    textField.focus();
     let paragraph = document.createElement("p");
     paragraph.id = ctr + "t";
     paragraph.append(todo);
@@ -19,7 +22,7 @@ function createToDo() {
     let editTodo = document.createElement("button");
     let deleteTodo = document.createElement("button");
     
-    document.getElementById("main").appendChild(paragraph);
+    document.getElementById("container").appendChild(paragraph);
     
     
     editTodo.id = ctr + "e";
@@ -56,7 +59,7 @@ function editTodoF(editId) {
     
     let saveBtn = document.createElement("button");
     
-    saveBtn.innerHTML = "update";
+    saveBtn.innerHTML = "SAVE";
     
     document.getElementById(editId).innerHTML = "";
     document.getElementById(editId).append(editArea);
@@ -92,8 +95,8 @@ function updateTodoF(editId, editAreaId, paragraphId) {
     
     editTodo.id = ctr + "eee";
     deleteTodo.id = ctr + "ddd";
-    editTodo.innerHTML = "Edit";
-    deleteTodo.innerHTML = "Delete";
+    editTodo.innerText = "Edit";
+    deleteTodo.innerText = "Delete";
 
     document.getElementById(editId).appendChild(editTodo);
     document.getElementById(editId).appendChild(deleteTodo);
