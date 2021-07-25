@@ -7,20 +7,37 @@
     <link rel="stylesheet" href="app.css" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <title>ToDo List</title>
+    <link rel="shortcut icon" href="icon/favicon.ico" type="image/x-icon">  
 </head>
 <body>
     <div id="container" class="container">
         <h1>TODO LIST</h1>
-        <br>
-        <h3>ADD TASK</h3>
-        <hr>
-        <input id="todoTextField" class="textField" type="text" placeholder="Write something to do" autofocus>
-        <input id="todoSubmitButton" class="submitBtn" type="button" value="ADD" onclick="createToDo()">
-        <br><br>
-        <h3>TASKS IN PROGRESS</h3>
-        <hr>
-        <h3>TASKS DONE</h3>
-        <hr>
+        
+        <div id="sub-container" class="sub-container">
+            <h3>ADD TASK</h3>
+            <hr>
+
+            <input id="todo-input" class="todo-input" type="text" placeholder="Write something to do" autofocus>
+            <input id="todo-submit" class="todo-submit" type="button" value="ADD" onclick="createToDo()">
+        </div>
+
+        <div id="sub-container" class="sub-container">
+            <h3>TASKS IN PROGRESS</h3>
+            <hr>
+
+            <div id="tasks-inprogress"  class="tasks-inprogress">
+
+            </div>
+        </div>
+
+        <div id="sub-container" class="sub-container">
+            <h3>TASKS DONE</h3>
+            <hr>
+
+            <div id="tasks-done" class="tasks-done">
+
+            </div>
+        </div>
     </div>
 </body>
 <script src="app.js"></script>

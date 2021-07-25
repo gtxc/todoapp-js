@@ -7,28 +7,13 @@ body {
     max-width: 500px;
     margin: auto;
     text-align: center;
-    word-wrap: break-word
+    word-wrap: break-word;
 }
 
-.textField {
-    padding: 7px;
-    width: 420px;
+.sub-container {
     font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    outline: none;
-    font-family: 'Montserrat';
-}
-
-.submitBtn {
-    width: 58px;
-    padding: 7px;
-    border: 1px solid #ddd;
-    border-radius: 5px;    
-}
-
-.submitBtn:hover {
-    background-color: greenyellow;
+    text-align: left;
+    margin-bottom: 50px;
 }
 
 .container h3 {
@@ -36,27 +21,69 @@ body {
     font-size: 20px;
 }
 
-p input {
+.todo-input {
     margin: auto;
     padding: 7px;
     width: 410px;
     font-size: 16px;
     border-radius: 5px;
-    border-color: slateblue;
     border: 1px solid #ddd;
     outline: none;
     margin-right: 6px;
     font-family: 'Montserrat';
 }
 
-p button {
-    width: 68px;
+input[type=button] {
+    width: 58px;    
     padding: 7px;
-    border-radius: 5px;
     border: 1px solid #ddd;
+    border-radius: 5px;    
 }
 
-p {
-    font-size: 16px;
-    text-align: left;
+.todo-submit:hover {
+    background-color: #77dd77;
 }
+
+.todo-edit:hover {
+    background-color: #5CB3DE;
+}
+
+.todo-update:hover {
+    background-color: #77dd77;
+}
+
+.todo-delete:hover {
+    background-color: indianred;
+}
+
+.tasks-inprogress {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 25px;
+}
+
+.tasks-done {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tasks-created {
+    flex: auto;
+    width: 440px;
+    padding-top: 8px;
+    /* padding-left: 8px; */
+    /* background: #000; */
+}
+.tasks-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.tasks-buttons-hidden {
+    display: none;
+}
+
+.tasks-row {
+    flex-direction: row;
+}
+

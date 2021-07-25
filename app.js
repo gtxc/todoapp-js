@@ -1,75 +1,100 @@
-let ctr = 0;
-
 const containerDiv = document.getElementById("container");
-const textField = document.getElementById("todoTextField");
-const submitButton = document.getElementById("todoSubmitButton");
+const todoInput = document.getElementById("todo-input");
+const submitButton = document.getElementById("todo-submit");
+const tasksInProgress = document.getElementById("tasks-inprogress");
+const tasksDone = document.getElementById("tasks-done");
 
-textField.addEventListener("keyup", function(event) {
+todoInput.addEventListener("keyup", function(event) {
     event.preventDefault();
     if (event.key === 'Enter') {
-        document.getElementById("todoSubmitButton").click();
+        document.getElementById("todo-submit").click();
     }
 });
 
-function createToDo() {
+function newTask(taskText) {
+    let todoDiv = document.createElement("div");
+    todoDiv.className = "tasks-inprogress tasks-row";
+    todoDiv.id = Date.now();
 
-    let todo = textField.value;
-    textField.focus();
-    let paragraph = document.createElement("p");
-    paragraph.id = ctr + "t";
-    paragraph.append(todo);
+    let tasksCreated = document.createElement("div");
+    tasksCreated.className = "tasks-created";
     
-    let editTodo = document.createElement("button");
-    let deleteTodo = document.createElement("button");
+    let tasksButtons = document.createElement("div");
+    tasksButtons.className = "tasks-buttons";
     
-    document.getElementById("container").appendChild(paragraph);
+    let editTodo = document.createElement("input");
+    editTodo.type = "button";
+    editTodo.value = "Edit";
+    editTodo.className = "todo-edit";
+    editTodo.id = Date.now();
     
+    let deleteTodo = document.createElement("input");
+    deleteTodo.type = "button";
+    deleteTodo.value = "Delete";
+    deleteTodo.className = "todo-delete";
+    deleteTodo.id = Date.now();
     
-    editTodo.id = ctr + "e";
-    deleteTodo.id = ctr + "d";
-    editTodo.innerHTML = "Edit";
-    document.getElementById(paragraph.id).appendChild(editTodo);
-    deleteTodo.innerHTML = "Delete";
-    document.getElementById(paragraph.id).appendChild(deleteTodo);
+    tasksCreated.append(taskText);
+    tasksButtons.append(editTodo);
+    tasksButtons.append(deleteTodo);
     
+    todoDiv.append(tasksCreated);
+    todoDiv.append(tasksButtons);
+
+    tasksInProgress.append(todoDiv);
     
     editTodo.onclick = function() {
-        editTodoF(paragraph.id);
+        editTodoF(todoDiv.id);
     };
-
+    
     deleteTodo.onclick = function() {
-        deleteTodoF(paragraph.id);
+        deleteTodoF(todoDiv.id);
     };
-    document.getElementById("todoTextField").value = "";
-    
-    ctr++;
 
+    document.getElementById("todo-input").value = "";
     
+    todoInput.focus();
+}
+
+function createToDo() {
+    newTask(todoInput.value);
 };
 
+function displayTodo(itemId) {
+
+};
 
 function editTodoF(editId) {
-    let editTodoItem = document.getElementById(editId).firstChild.nodeValue;
+    let editTodoItem = document.getElementById(editId);
 
     let editArea = document.createElement("input");
-    editArea.value = editTodoItem;
-    editAreaId = editArea.id = ctr + "ee";
+    editArea.className = "todo-input";
+    editArea.value = editTodoItem.textContent;
+    editAreaId = editArea.id = Date.now();
 
+    
+    let saveTodo = document.createElement("input");
+    saveTodo.type = "button";
+    saveTodo.value = "Update";
+    saveTodo.className = "todo-update";
+    saveTodoId = saveTodo.id = Date.now();
+    
+    editArea.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.key === 'Enter') {
+            document.getElementById(saveTodoId).click();
+        }
+    });
 
-    
-    let saveBtn = document.createElement("button");
-    
-    saveBtn.innerHTML = "SAVE";
-    
-    document.getElementById(editId).innerHTML = "";
-    document.getElementById(editId).append(editArea);
+    editTodoItem.childNodes[0].textContent = "";
+    editTodoItem.childNodes[1].className = "tasks-buttons-hidden";
+    editTodoItem.append(editArea);
     editArea.focus();
 
+    editTodoItem.append(saveTodo);
 
-    document.getElementById(editId).append(saveBtn);
-
-    saveBtn.onclick = function() {
-        updateTodoF(editId, editAreaId, editId);
+    saveTodo.onclick = function() {
+        updateTodoF(editId, editAreaId);
     };
 }
 
@@ -78,38 +103,15 @@ function deleteTodoF(editId) {
     editTodoItem.parentNode.removeChild(editTodoItem);
 };
 
-function updateTodoF(editId, editAreaId, paragraphId) {
+function updateTodoF(editId, editAreaId) {
 
-    editItem = document.getElementById(editAreaId);
     newEdit = document.getElementById(editId);
+    editItem = document.getElementById(editAreaId);
+    
+    newEdit.childNodes[0].textContent = editItem.value;
+    newEdit.childNodes[1].className = "tasks-buttons";
+    newEdit.childNodes[2].remove();
+    newEdit.childNodes[2].remove();
 
-    
-    newEdit.innerHTML = "";
-    document.getElementById(editId).append(editItem.value);
-
-
-    let editTodo = document.createElement("button");
-    let deleteTodo = document.createElement("button");
-    
-    
-    
-    editTodo.id = ctr + "eee";
-    deleteTodo.id = ctr + "ddd";
-    editTodo.innerText = "Edit";
-    deleteTodo.innerText = "Delete";
-
-    document.getElementById(editId).appendChild(editTodo);
-    document.getElementById(editId).appendChild(deleteTodo);
-    
-    
-    editTodo.onclick = function() {
-        editTodoF(paragraphId);
-    };
-
-    deleteTodo.onclick = function() {
-        deleteTodoF(paragraphId);
-    };
-    
-    ctr++;
-
+    editItem.textContent = "";
 };
